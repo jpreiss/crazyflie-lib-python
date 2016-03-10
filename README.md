@@ -57,29 +57,10 @@ To install the Crazyflie PC client in Linux, you can run the setup script with:
 
 ```sudo setup_linux.sh```
 
-This will install the Crazyflie lib syste-mwide, create a udev entry for
+This will install the Crazyflie lib system-wide, create a udev entry for
 the Crazyradio and setup the permissions so that the current user can use the
 radio without root permissions after restarting the computer.
 
-### Setting udev permissions
-
-The following steps make it possible to use the USB Radio without being root.
-
-```
-sudo groupadd plugdev
-sudo usermod -a -G plugdev <username>
-```
-
-Create a file named ```/etc/udev/rules.d/99-crazyradio.rules``` and add the
-following:
-```
-SUBSYSTEM=="usb", ATTRS{idVendor}=="1915", ATTRS{idProduct}=="7777", MODE="0664", GROUP="plugdev"
-```
-
-To connect Crazyflie 2.0 via usb, create a file name ```/etc/udev/rules.d/99-crazyflie.rules``` and add the following:
-```
-SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", MODE="0664", GROUP="plugdev"
-```
 
 [cfclient]: https://www.github.com/bitcraze/crazyflie-clients-python
 
